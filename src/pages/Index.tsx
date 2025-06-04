@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { QrCode, ShoppingCart, Clock, Star, Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import MenuCategory from "@/components/MenuCategory";
 import Cart from "@/components/Cart";
 import QRScanner from "@/components/QRScanner";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 interface MenuItem {
   id: number;
@@ -152,42 +153,15 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50 flex flex-col">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-orange-100 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
-                  <QrCode className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h1 className="text-xl font-bold text-gray-900">Bella Vista</h1>
-                  <p className="text-xs text-gray-500">Fine Dining Experience</p>
-                </div>
-              </div>
-            </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setIsCartOpen(true)}
-              className="relative border-orange-200 hover:bg-orange-50"
-            >
-              <ShoppingCart className="w-4 h-4 mr-2" />
-              Cart ({getTotalItems()})
-              {getTotalItems() > 0 && (
-                <Badge className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1.5 py-0.5">
-                  {getTotalItems()}
-                </Badge>
-              )}
-            </Button>
-          </div>
-        </div>
-      </header>
+      <Header 
+        cartItemsCount={getTotalItems()}
+        onCartClick={() => setIsCartOpen(true)}
+      />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-6">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Our Menu</h2>
           <p className="text-gray-600">Crafted with passion, served with love</p>
@@ -235,6 +209,9 @@ const Index = () => {
           )}
         </div>
       </main>
+
+      {/* Footer */}
+      <Footer />
 
       {/* Floating Cart Button for Mobile */}
       {getTotalItems() > 0 && (
