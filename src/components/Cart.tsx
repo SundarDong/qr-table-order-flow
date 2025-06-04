@@ -1,4 +1,3 @@
-
 import { X, Plus, Minus, ShoppingBag, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,10 +23,11 @@ interface CartProps {
   onClose: () => void;
   items: CartItem[];
   onUpdateQuantity: (id: number, quantity: number) => void;
+  onClearCart: () => void;
   totalPrice: number;
 }
 
-const Cart = ({ isOpen, onClose, items, onUpdateQuantity, totalPrice }: CartProps) => {
+const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onClearCart, totalPrice }: CartProps) => {
   const { toast } = useToast();
 
   const handleCheckout = () => {
@@ -35,6 +35,7 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, totalPrice }: CartProp
       title: "Order Placed Successfully!",
       description: `Your order of $${totalPrice.toFixed(2)} has been sent to the kitchen. Estimated time: 25-30 minutes.`,
     });
+    onClearCart();
     onClose();
   };
 

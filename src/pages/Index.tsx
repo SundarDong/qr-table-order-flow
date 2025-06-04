@@ -1,7 +1,7 @@
-
 import { useState } from "react";
-import { QrCode, ShoppingCart, Clock, Star } from "lucide-react";
+import { QrCode, ShoppingCart, Clock, Star, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import MenuCategory from "@/components/MenuCategory";
@@ -29,6 +29,7 @@ const Index = () => {
   const [currentView, setCurrentView] = useState<'scanner' | 'menu'>('scanner');
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const menuItems: MenuItem[] = [
     {
@@ -127,6 +128,10 @@ const Index = () => {
     }
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   const getTotalItems = () => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
@@ -134,6 +139,13 @@ const Index = () => {
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
+
+  // Filter menu items based on search query
+  const filteredMenuItems = menuItems.filter(item =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   if (currentView === 'scanner') {
     return <QRScanner onScanComplete={() => setCurrentView('menu')} />;
@@ -176,21 +188,51 @@ const Index = () => {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Our Menu</h2>
           <p className="text-gray-600">Crafted with passion, served with love</p>
         </div>
 
+        {/* Search Bar */}
+        <div className="max-w-md mx-auto mb-8">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+            <Input
+              type="text"
+              placeholder="Search menu items..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 border-orange-200 focus:border-orange-400 focus:ring-orange-400"
+            />
+          </div>
+        </div>
+
         {/* Menu Categories */}
         <div className="space-y-12">
-          {categories.map(category => (
-            <MenuCategory
-              key={category}
-              category={category}
-              items={menuItems.filter(item => item.category === category)}
-              onAddToCart={addToCart}
-            />
-          ))}
+          {categories.map(category => {
+            const categoryItems = filteredMenuItems.filter(item => item.category === category);
+            
+            // Only show category if it has items after filtering
+            if (categoryItems.length === 0) return null;
+            
+            return (
+              <MenuCategory
+                key={category}
+                category={category}
+                items={categoryItems}
+                onAddToCart={addToCart}
+              />
+            );
+          })}
+          
+          {/* Show message if no items match search */}
+          {searchQuery && filteredMenuItems.length === 0 && (
+            <div className="text-center py-12">
+              <Search className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+              <p className="text-gray-500 text-lg">No items found</p>
+              <p className="text-gray-400">Try searching with different keywords</p>
+            </div>
+          )}
         </div>
       </main>
 
@@ -215,6 +257,7 @@ const Index = () => {
         onClose={() => setIsCartOpen(false)}
         items={cartItems}
         onUpdateQuantity={updateCartItemQuantity}
+        onClearCart={clearCart}
         totalPrice={getTotalPrice()}
       />
     </div>
