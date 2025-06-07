@@ -1,4 +1,3 @@
-
 import { Clock, Phone, MapPin, Star } from "lucide-react";
 
 const Footer = () => {
@@ -15,7 +14,8 @@ const Footer = () => {
               <h3 className="text-xl font-bold">Bella Vista</h3>
             </div>
             <p className="text-gray-300 mb-4">
-              Experience fine dining at its best. Our chefs craft each dish with passion and the finest ingredients.
+              Experience fine dining at its best. Our chefs craft each dish with
+              passion and the finest ingredients.
             </p>
           </div>
 
@@ -25,15 +25,17 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-orange-400" />
-                <span className="text-gray-300">(555) 123-4567</span>
+                <span className="text-gray-300">+977-985858585</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-4 h-4 text-orange-400" />
-                <span className="text-gray-300">123 Fine Dining St, City</span>
+                <span className="text-gray-300">Kathmandu, Nepal</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Clock className="w-4 h-4 text-orange-400" />
-                <span className="text-gray-300">Mon-Sun: 5:00 PM - 11:00 PM</span>
+                <span className="text-gray-300">
+                  Mon-Sun: 5:00 PM - 11:00 PM
+                </span>
               </div>
             </div>
           </div>
@@ -42,17 +44,37 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <div className="space-y-2">
-              <a href="#" className="block text-gray-300 hover:text-orange-400 transition-colors">About Us</a>
-              <a href="#" className="block text-gray-300 hover:text-orange-400 transition-colors">Reservations</a>
-              <a href="#" className="block text-gray-300 hover:text-orange-400 transition-colors">Private Events</a>
-              <a href="#" className="block text-gray-300 hover:text-orange-400 transition-colors">Gift Cards</a>
+              <a
+                href="#"
+                className="block text-gray-300 hover:text-orange-400 transition-colors"
+              >
+                About Us
+              </a>
+              <a
+                href="#"
+                className="block text-gray-300 hover:text-orange-400 transition-colors"
+              >
+                Reservations
+              </a>
+              <a
+                href="#"
+                className="block text-gray-300 hover:text-orange-400 transition-colors"
+              >
+                Private Events
+              </a>
+              <a
+                href="#"
+                className="block text-gray-300 hover:text-orange-400 transition-colors"
+              >
+                Gift Cards
+              </a>
             </div>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            © 2024 Bella Vista Restaurant. All rights reserved.
+            © 2024 Ishu Restaurant. All rights reserved.
           </p>
         </div>
       </div>
