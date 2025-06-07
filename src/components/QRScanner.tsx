@@ -1,8 +1,13 @@
-
 import { useState } from "react";
 import { QrCode, Scan, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface QRScannerProps {
   onScanComplete: () => void;
@@ -28,9 +33,12 @@ const QRScanner = ({ onScanComplete }: QRScannerProps) => {
             <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
               <QrCode className="w-8 h-8 text-white" />
             </div>
-            <CardTitle className="text-2xl font-bold text-gray-900">Welcome to Bella Vista</CardTitle>
+            <CardTitle className="text-2xl font-bold text-gray-900">
+              Welcome to Bella Vista
+            </CardTitle>
             <CardDescription className="text-gray-600">
-              Scan the QR code on your table to view our menu and place your order
+              Scan the QR code on your table to view our menu and place your
+              order
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -41,9 +49,11 @@ const QRScanner = ({ onScanComplete }: QRScannerProps) => {
                   <p className="text-xs text-gray-500">QR Code Area</p>
                 </div>
               </div>
-              <p className="text-sm text-gray-600">Point your camera at the QR code</p>
+              <p className="text-sm text-gray-600">
+                Point your camera at the QR code
+              </p>
             </div>
-            
+
             <div className="space-y-4">
               <Button
                 onClick={handleScan}
@@ -62,7 +72,7 @@ const QRScanner = ({ onScanComplete }: QRScannerProps) => {
                   </div>
                 )}
               </Button>
-              
+
               <Button
                 variant="outline"
                 onClick={onScanComplete}

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { QrCode, ShoppingCart, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -29,7 +28,7 @@ const Header = ({ cartItemsCount, onCartClick }: HeaderProps) => {
               </div>
             </div>
           </div>
-          
+
           <div className="flex items-center space-x-3">
             {/* Profile Icon with Table Number */}
             <div className="relative">
@@ -41,11 +40,13 @@ const Header = ({ cartItemsCount, onCartClick }: HeaderProps) => {
               >
                 <User className="w-5 h-5 text-gray-600" />
               </Button>
-              
+
               {showTableNumber && (
                 <Card className="absolute top-12 right-0 z-50 shadow-lg border border-orange-200">
                   <CardContent className="p-3">
-                    <p className="text-sm font-medium text-gray-900">{tableNumber}</p>
+                    <p className="text-sm font-medium text-gray-900">
+                      {tableNumber}
+                    </p>
                   </CardContent>
                 </Card>
               )}

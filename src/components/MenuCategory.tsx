@@ -1,27 +1,15 @@
-
 import { Clock, Star, Leaf, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
-interface MenuItem {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  image: string;
-  rating: number;
-  prepTime: string;
-  isVegetarian?: boolean;
-  isSpicy?: boolean;
-}
-
-interface MenuCategoryProps {
-  category: string;
-  items: MenuItem[];
-  onAddToCart: (item: MenuItem) => void;
-}
+import { MenuCategoryProps } from "@/types/menucategory";
 
 const MenuCategory = ({ category, items, onAddToCart }: MenuCategoryProps) => {
   return (
@@ -31,7 +19,10 @@ const MenuCategory = ({ category, items, onAddToCart }: MenuCategoryProps) => {
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {items.map((item) => (
-          <Card key={item.id} className="group hover:shadow-lg transition-all duration-300 border-orange-100 hover:border-orange-200">
+          <Card
+            key={item.id}
+            className="group hover:shadow-lg transition-all duration-300 border-orange-100 hover:border-orange-200"
+          >
             <CardHeader className="pb-3">
               <div className="aspect-video bg-gradient-to-r from-orange-100 to-red-100 rounded-lg mb-3 flex items-center justify-center">
                 <div className="text-orange-300 text-4xl">🍽️</div>
@@ -42,13 +33,19 @@ const MenuCategory = ({ category, items, onAddToCart }: MenuCategoryProps) => {
                 </CardTitle>
                 <div className="flex space-x-1">
                   {item.isVegetarian && (
-                    <Badge variant="secondary" className="bg-green-100 text-green-700">
+                    <Badge
+                      variant="secondary"
+                      className="bg-green-100 text-green-700"
+                    >
                       <Leaf className="w-3 h-3 mr-1" />
                       Veg
                     </Badge>
                   )}
                   {item.isSpicy && (
-                    <Badge variant="secondary" className="bg-red-100 text-red-700">
+                    <Badge
+                      variant="secondary"
+                      className="bg-red-100 text-red-700"
+                    >
                       <Flame className="w-3 h-3 mr-1" />
                       Spicy
                     </Badge>
